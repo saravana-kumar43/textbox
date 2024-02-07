@@ -1,0 +1,97 @@
+
+<div style="border-bottom: 3px solid black; height: 50px;width: 150px;border-right: 3px solid black;text-align: center;text-justify: auto;padding-top: 18px;background-color: darkgrey;font-weight: bold;font-size: 20px;">Controls</div>
+<section class="container">
+  <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="controls">
+      <div cdkDrag [cdkDragData]="controls" class="item">
+          Textbox
+      </div> 
+  
+      
+
+   </div> 
+
+  
+
+  <!-- <div cdkDropList [cdkDropListData]="formFields"  (cdkDropListDropped)="onDrop($event)"> -->
+      <div *ngFor="let field of formFields;"
+      
+      
+       class="field" (click)="property(field)">
+      <input type="{{field.type}}" class="input-with-icon"   [(ngModel)]=" field.contentText" [style.color]="field.textColor" [style.fontSize.px]="field.fontSize" [style.fontStyle]="field.fontStyle"   [style.width.px]="field.textboxWidth  "
+      [style.height.px]="field. textboxHeight"
+      [style.textAlign]="field. textAlignment" id="textbox" >
+      
+      
+  
+    </div>
+    
+  <!-- </div> -->
+
+  <div *ngIf="vk && selectedField" >
+      <h3 class="container1" >Properties</h3>
+      
+      <div>
+        <label>Text Color:</label>
+        <input type="color" [(ngModel)]="selectedField.textColor" />
+      </div>
+      <br><br>
+      <div>
+        <label>Font Size:</label>
+        <input type="number" [(ngModel)]="selectedField.fontSize" />
+      </div>
+      <br><br>
+      <div>
+        <label>Font Style:</label>
+        <select [(ngModel)]="selectedField.fontStyle">
+          <!-- <option value="normal">Normal</option> -->
+          <option value="italic">Italic</option>
+          <option value="oblique">Oblique</option>
+          <option value="bold">Bold</option>
+          <!-- <option value="">Bold</option> -->
+
+        </select>
+       
+      </div>
+      <br><br>
+
+      <div>
+        <label>Textbox Name:</label>
+        <input type="text" [(ngModel)]="selectedField.textboxName" />
+      </div>
+      <br><br>
+      <div>
+        <label>Textbox Width:</label>
+        <input type="number" [(ngModel)]="selectedField.textboxWidth" />
+      </div>
+      <br><br>
+      <div>
+        <label>Textbox Height:</label>
+        <input type="number" [(ngModel)]="selectedField.textboxHeight" />
+      </div>
+      <br><br>
+      <!-- ... (existing content) -->
+
+      <div class="alignment-controls">
+        <label>Text Alignment:</label>
+        <div>
+          <input type="radio" id="alignLeft" name="alignment" [(ngModel)]=" selectedField. textAlignment" value="left" (click)="alignText('left')">
+          <label for="alignLeft">Left</label>
+        
+          <input type="radio" id="alignCenter" name="alignment" [(ngModel)]=" selectedField. textAlignment" value="center" (change)="alignText('center')">
+          <label for="alignCenter">Center</label>
+        
+          <input type="radio" id="alignRight" name="alignment" [(ngModel)]=" selectedField. textAlignment" value="right" (change)="alignText('right')">
+          <label for="alignRight">Right</label>
+        </div>
+      </div>
+      <label>AddTextbox</label>
+      <button (click)="addNewTextbox()">Add Textbox</button>
+
+
+      <br><br>
+    
+  
+  </div>
+
+  
+</section>
